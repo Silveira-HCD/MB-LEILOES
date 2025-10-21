@@ -16,12 +16,20 @@ class _LoteVideoPageState extends State<LoteVideoPage> {
   @override
   void initState() {
     super.initState();
-    final videoId = YoutubePlayer.convertUrlToId(widget.videoUrl)!;
+    final videoId = YoutubePlayer.convertUrlToId(widget.videoUrl);
     _controller = YoutubePlayerController(
-      initialVideoId: videoId,
-      flags: const YoutubePlayerFlags(
-        autoPlay: true,
-        mute: false,
+      initialVideoId: videoId!,
+      flags: const YoutubePlayerFlags(autoPlay: true),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Assistir Lote')),
+      body: YoutubePlayer(
+        controller: _controller,
+        showVideoProgressIndicator: true,
       ),
     );
   }
@@ -30,27 +38,5 @@ class _LoteVideoPageState extends State<LoteVideoPage> {
   void dispose() {
     _controller.dispose();
     super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Reprodução do Lote')),
-      body: YoutubePlayerBuilder(
-        player: YoutubePlayer(controller: _controller),
-        builder: (context, player) {
-          return Column(
-            children: [
-              player,
-              const SizedBox(height: 20),
-              const Text(
-                'Reprodução do vídeo do lote selecionado',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-            ],
-          );
-        },
-      ),
-    );
   }
 }

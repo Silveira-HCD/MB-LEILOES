@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:intl/intl.dart';
 
 class Leilao {
   final String numero;
@@ -21,35 +20,30 @@ class Leilao {
 
   factory Leilao.fromJson(Map<String, dynamic> json) {
     return Leilao(
-      numero: json['numero'],
-      imagemCard: json['imagemCard'],
-      imagemBanner: json['imagemBanner'],
-      data: json['data'],
-      horario: json['horario'],
-      canal: json['canal'],
+      numero: json['numero'] ?? '',
+      imagemCard: json['imagemCard'] ?? '',
+      imagemBanner: json['imagemBanner'] ?? '',
+      data: json['data'] ?? '',
+      horario: json['horario'] ?? '',
+      canal: json['canal'] ?? '',
     );
   }
 }
 
 Future<List<Leilao>> loadAllLeiloes() async {
-  final jsonString = await rootBundle.loadString('assets/images/leiloes.json');
-  final jsonMap = json.decode(jsonString);
-  final List<dynamic> leiloesJson = jsonMap['leiloes'];
+  try {
+    final jsonString = await rootBundle.loadString('assets/images/leiloes.json');
+    final jsonMap = json.decode(jsonString);
 
-  return leiloesJson.map((json) => Leilao.fromJson(json)).toList();
-}
-
-// Esta é a nova função para verificar se há um leilão ao vivo
-Future<Leilao?> getLiveLeilao() async {
-  final now = DateTime.now();
-  final allLeiloes = await loadAllLeiloes();
-
-  if (allLeiloes.isEmpty) return null;
-
-  final proximoLeilao = allLeiloes[0];
-  final leilaoDateTimeCuiaba = DateFormat('dd/MM HH:mm').parse('${proximoLeilao.data} 09:00');
-
-  final isLive = now.isAfter(leilaoDateTimeCuiaba.subtract(const Duration(minutes: 5))) && now.isBefore(leilaoDateTimeCuiaba.add(const Duration(hours: 1, minutes: 30)));
-
-  return isLive ? proximoLeilao : null;
+    if (jsonMap != null && jsonMap['leiloes'] is List) {
+      final List<dynamic> leiloesJson = jsonMap['leiloes'];
+      return leiloesJson.map((json) => Leilao.fromJson(json)).toList();
+    } else {
+      print('JSON não contém lista válida de leilões.');
+      return [];
+    }
+  } catch (e) {
+    print('Erro ao carregar leilões: $e');
+    return [];
+  }
 }
