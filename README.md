@@ -1,16 +1,58 @@
-# projeto_mb_teste
+# 🐂 MB Leilões
 
-A new Flutter project.
+Aplicativo oficial da **MB Leilões**, desenvolvido em Flutter, com foco em exibir leilões, lotes e transmissões ao vivo de forma prática e moderna.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 📱 Funcionalidades Atuais
+- Tela de **Splash** personalizada com logo da MB Leilões  
+- **Menu lateral (Drawer)** com navegação entre páginas  
+- **Página Inicial** com banner dinâmico do próximo leilão  
+- **Agenda de Leilões** listando todos os eventos  
+- **Página de Lotes**, exibindo vídeos individuais dos lotes via YouTube  
+- **Tela de Fale Conosco** com botões diretos para WhatsApp  
+- Layout otimizado para dispositivos móveis  
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🚀 Próximas Etapas
+🔹 Integração com **Firebase** para:
+- Atualização dinâmica dos leilões e lotes, sem precisar atualizar o app  
+- Controle remoto do botão “AO VIVO” em tempo real  
+- Painel administrativo web (gerenciar banners, leilões e vídeos)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## 🧩 Stack Tecnológica
+- **Flutter (Dart)** — desenvolvimento mobile multiplataforma  
+- **Firebase (em breve)** — banco de dados e hospedagem  
+- **YouTube Embed** — exibição dos vídeos dos lotes  
+- **GitHub** — versionamento e colaboração  
+
+---
+
+## 🧠 Estrutura do Projeto
+lib/
+├── features/
+│ ├── home/
+│ │ └── home_page.dart
+│ ├── leilao/
+│ │ ├── leilao.dart
+│ │ └── leilao_detalhe_page.dart
+│ └── fale_conosco/
+│ └── fale_conosco_page.dart
+├── main.dart
+└── assets/images/
+
+
+---
+
+## 🧑‍💻 Desenvolvedor
+**Carlos Henrique Costa da Silveira**  
+Desenvolvedor Flutter — MB Leilões  
+📧 Contato: silveira.hcd@gmail.com
+
+---
+
+## 🏷️ Versão
+`v1.2-preFirebase` — Base estável antes da integração com banco de dados online.
