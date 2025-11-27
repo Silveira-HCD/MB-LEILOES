@@ -1,50 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class LiveStreamPage extends StatefulWidget {
-  const LiveStreamPage({super.key});
+  final String? canalUrl;
+
+  const LiveStreamPage({super.key, this.canalUrl});
 
   @override
   State<LiveStreamPage> createState() => _LiveStreamPageState();
 }
 
 class _LiveStreamPageState extends State<LiveStreamPage> {
-  bool _isPlayerLoaded = false;
   late final WebViewController controller;
 
   @override
   void initState() {
     super.initState();
+
+    // URL fallback
+    final url = widget.canalUrl?.isNotEmpty == true
+        ? widget.canalUrl!
+        : 'https://equipea.com.br/player/?canal=canaldoboi';
+
+    // Força modo imersivo — some barra inferior durante o vídeo
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..loadRequest(
-        Uri.parse('https://equipea.com.br/player/?canal=canaldoboi'),
-      );
+      ..setBackgroundColor(Colors.black)
+      ..loadRequest(Uri.parse(url));
+  }
+
+  @override
+  void dispose() {
+    // Retorna o modo normal da interface ao sair da página
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final bottomInset = MediaQuery.of(context).padding.bottom;
+
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Colors.orangeAccent,
         title: const Text('Leilão ao Vivo'),
       ),
-      body: _isPlayerLoaded
-          ? WebViewWidget(controller: controller)
-          : GestureDetector(
-        onTap: () {
-          setState(() {
-            _isPlayerLoaded = true;
-          });
-        },
-        child: Container(
-          color: Colors.black,
-          child: const Center(
-            child: Icon(
-              Icons.play_circle_filled,
-              color: Colors.white,
-              size: 80,
-            ),
+      body: SafeArea(
+        bottom: false,
+        child: Padding(
+          padding: EdgeInsets.only(
+            bottom: bottomInset + 12,
           ),
+          child: WebViewWidget(controller: controller),
         ),
       ),
     );

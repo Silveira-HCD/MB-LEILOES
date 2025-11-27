@@ -1,49 +1,50 @@
-import 'dart:convert';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Leilao {
-  final String numero;
-  final String imagemCard;
-  final String imagemBanner;
+  final String id;
+  final String titulo;
   final String data;
   final String horario;
   final String canal;
+  final String imagemCard;
+  final String imagemBanner;
+  final String bannerUrl;
+  final String frase1;
+  final String frase2;
+  final bool aoVivo;
+  final String aoVivoUrl;
 
   Leilao({
-    required this.numero,
-    required this.imagemCard,
-    required this.imagemBanner,
+    required this.id,
+    required this.titulo,
     required this.data,
     required this.horario,
     required this.canal,
+    this.imagemCard = '',
+    this.imagemBanner = '',
+    this.bannerUrl = '',
+    this.frase1 = '',
+    this.frase2 = '',
+    this.aoVivo = false,
+    this.aoVivoUrl = '',
   });
 
-  factory Leilao.fromJson(Map<String, dynamic> json) {
+  factory Leilao.fromFirestore(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>? ?? {};
+
     return Leilao(
-      numero: json['numero'] ?? '',
-      imagemCard: json['imagemCard'] ?? '',
-      imagemBanner: json['imagemBanner'] ?? '',
-      data: json['data'] ?? '',
-      horario: json['horario'] ?? '',
-      canal: json['canal'] ?? '',
+      id: doc.id,
+      titulo: data['titulo'] ?? 'Leilão sem título',
+      data: data['data'] ?? '',
+      horario: data['horario'] ?? '',
+      canal: data['canal'] ?? '',
+      imagemCard: data['imagemCard'] ?? '',
+      imagemBanner: data['imagemBanner'] ?? '',
+      bannerUrl: data['bannerUrl'] ?? data['imagemBanner'] ?? '',
+      frase1: data['frase1'] ?? '',
+      frase2: data['frase2'] ?? '',
+      aoVivo: data['aoVivo'] ?? false,
+      aoVivoUrl: data['aoVivoUrl'] ?? '',
     );
-  }
-}
-
-Future<List<Leilao>> loadAllLeiloes() async {
-  try {
-    final jsonString = await rootBundle.loadString('assets/images/leiloes.json');
-    final jsonMap = json.decode(jsonString);
-
-    if (jsonMap != null && jsonMap['leiloes'] is List) {
-      final List<dynamic> leiloesJson = jsonMap['leiloes'];
-      return leiloesJson.map((json) => Leilao.fromJson(json)).toList();
-    } else {
-      print('JSON não contém lista válida de leilões.');
-      return [];
-    }
-  } catch (e) {
-    print('Erro ao carregar leilões: $e');
-    return [];
   }
 }

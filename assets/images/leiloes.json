@@ -1,42 +1,58 @@
 {
   "leiloes": [
     {
-      "numero": "519º Leilão Virtual MB leilões",
+      "numero": "520º Leilão Virtual MB leilões",
       "imagemCard": "leilao519.png",
       "imagemBanner": "banner519.png",
-      "data": "19/10",
+      "data": "26/10",
       "horario": "09:00",
       "canal": "CANAL DO BOI"
     },
     {
-      "numero": "518º Leilão Virtual MB leilões",
+      "numero": "521º Leilão Virtual MB leilões",
+      "imagemCard": "leilao519.png",
+      "imagemBanner": "banner519.png",
+      "data": "02/11",
+      "horario": "09:00",
+      "canal": "CANAL DO BOI"
+    },
+    {
+      "numero": "522º Leilão Virtual MB leilões",
       "imagemCard": "leilao7.png",
       "imagemBanner": "banner7.png",
-      "data": "12/10",
+      "data": "09/11",
       "horario": "09:00",
       "canal": "CANAL DO BOI"
     },
     {
-      "numero": "517º Leilão Virtual MB leilões",
+      "numero": "523º Leilão Virtual MB leilões",
       "imagemCard": "leilao2.png",
       "imagemBanner": "banner2.png",
-      "data": "05/10",
+      "data": "16/11",
       "horario": "09:00",
       "canal": "CANAL DO BOI"
     },
     {
-      "numero": "516º Leilão Virtual MB leilões",
+      "numero": "524º Leilão Virtual MB leilões",
       "imagemCard": "leilao3.png",
       "imagemBanner": "banner3.png",
-      "data": "28/09",
+      "data": "23/11",
       "horario": "09:00",
       "canal": "CANAL DO BOI"
     },
     {
-      "numero": "514º Leilão Virtual MB leilões",
+      "numero": "525º Leilão Virtual MB leilões",
       "imagemCard": "leilao4.png",
       "imagemBanner": "banner4.png",
-      "data": "14/09",
+      "data": "30/11",
+      "horario": "09:00",
+      "canal": "CANAL DO BOI"
+    },
+    {
+      "numero": "526º Leilão Virtual MB leilões",
+      "imagemCard": "leilao4.png",
+      "imagemBanner": "banner4.png",
+      "data": "07/14",
       "horario": "09:00",
       "canal": "CANAL DO BOI"
     }

@@ -43,3 +43,31 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# =========================
+# Firebase / Secrets (CRÍTICO)
+# =========================
+android/app/google-services.json
+firebase.json
+lib/firebase_options.dart
+
+# =========================
+# Keystore / Signing
+# =========================
+*.jks
+android/key.properties
+android/key.properties.txt
+
+# =========================
+# Android / Gradle extras
+# =========================
+android/.gradle/
+android/local.properties
+
+# =========================
+# iOS extras
+# =========================
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
