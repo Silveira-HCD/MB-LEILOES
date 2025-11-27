@@ -25,9 +25,9 @@ Desenvolvedor Flutter
 - ✅ Página inicial com **banner dinâmico** do leilão atual
 - ✅ Agenda de Leilões integrada ao **Firebase Firestore**
 - ✅ Página de Lotes com:
-- ✅ ordenação personalizada
-- ✅ ativação/desativação (on/off) diretamente pelo Firestore
-- ✅vídeos individuais via YouTube
+  - ordenação personalizada
+  - ativação/desativação (on/off) diretamente pelo Firestore
+  - vídeos individuais via YouTube
 - ✅ Controle remoto do botão **“AO VIVO”**
 - ✅ Transmissão ao vivo via WebView
 - ✅ Tela de Fale Conosco com acesso direto ao WhatsApp
